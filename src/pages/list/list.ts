@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { Pizzaservice } from '../../providers/pizzaservice/pizzaservice';
 
 @Component({
   selector: 'page-list',
@@ -10,10 +11,20 @@ export class ListPage {
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private pizzaService: Pizzaservice) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
+    this.pizzaService.get().then(items => {
+      console.log(items);
+      this.items = items;
+    });
 
+    this.pizzaService.getById(2).then(items => {
+      console.log(items);
+    });
+
+    
+    /*
     // Let's populate this page with some filler content for funzies
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
     'american-football', 'boat', 'bluetooth', 'build'];
@@ -25,8 +36,12 @@ export class ListPage {
         note: 'This is item #' + i,
         icon: this.icons[Math.floor(Math.random() * this.icons.length)]
       });
-    }
+    }*/
   }
+
+  ionViewDidLoad() {
+      console.log("ListPage");
+  };
 
   itemTapped(event, item) {
     // That's right, we're pushing to ourselves!
@@ -34,4 +49,4 @@ export class ListPage {
       item: item
     });
   }
-}
+ }
