@@ -3,7 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Pizzaservice } from '../../providers/pizzaservice/pizzaservice';
 import { Pizza } from '../../models/pizza';
 import { ToastController } from 'ionic-angular';
-import { PanierPage } from '../panier/panier';
 import { AddPage } from '../add/add';
 import { ModificationPage } from '../modification/modification';
 
@@ -28,12 +27,20 @@ export class HomePage {
     });
   }
 
+  /*Ajout Pizza*/
+   add() {
+    this.navCtrl.push(AddPage);
+    this.popup("Vous avez ajouté une pizza au menu");
+  }
+
+  /* Modification pizza*/
   update(thispizza) {
     this.navCtrl.push(ModificationPage, {
       var1: thispizza
     });
   }
 
+  /*Suppresion Pizza*/
   delete(thispizza) {
     this.pizza.delete(thispizza.id).then((item) => {
       this.getHome();
@@ -41,6 +48,7 @@ export class HomePage {
     this.popup("Vous avez supprimé " + thispizza.name + " du menu");
   }
 
+  /*Affichage du message en fonction de l'action*/
   popup(message) {
     let toast = this.toastCrtl.create({
       message: message,
@@ -51,21 +59,8 @@ export class HomePage {
     toast.present();
   }
 
-  panier(thispizza) {
-    this.paniersection.push(thispizza);
-    this.popup("Vous avez ajouté " + thispizza.name + " à votre panier");
-  }
 
-  add() {
-    this.navCtrl.push(AddPage);
-    this.popup("Vous avez ajouté une pizza au menu");
-  }
 
-  panierCheck() {
-    this.navCtrl.push(PanierPage, {
-      var1: this.paniersection
-    });
-  }
 
   ionViewDidLoad() {
     console.log('Ion View loaded');

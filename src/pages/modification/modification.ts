@@ -26,6 +26,8 @@ export class ModificationPage {
     this.pizza = this.navParams.data.var1;
   }
 
+
+  /* Fonction pour téléphone portable, on définie les options du module Camera*/
   private options: CameraOptions = {
     quality: 100,
     destinationType: this.camera.DestinationType.DATA_URL,
@@ -35,12 +37,14 @@ export class ModificationPage {
     mediaType: this.camera.MediaType.PICTURE
   }
 
+  /* Modification de la pizza et retour sur la page de la carte des pizza*/
   update() {
     this.pizzaservice.update(this.pizza).then((item) => {
       this.navCtrl.push(HomePage);
     });
   }
 
+  /* Récupération de l'image pour un téléphone portable et ajout lors de la modfication*/ 
   updatePicture() {
     this.camera.getPicture(this.options).then((imagedata) => {
       this.base64Image = imagedata;

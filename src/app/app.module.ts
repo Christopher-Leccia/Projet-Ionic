@@ -4,7 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { PanierPage } from '../pages/panier/panier';
 import { AddPage } from '../pages/add/add';
 import { ModificationPage } from '../pages/modification/modification';
 
@@ -20,7 +19,6 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     MyApp,
     HomePage,
-    PanierPage,
     AddPage,
     ModificationPage
   ],
@@ -33,7 +31,6 @@ import { HttpClientModule } from '@angular/common/http';
   entryComponents: [
     MyApp,
     HomePage,
-    PanierPage,
     AddPage,
     ModificationPage
   ],

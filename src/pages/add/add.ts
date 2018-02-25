@@ -29,6 +29,7 @@ export class AddPage {
 
   addPizza = [];
 
+  /* Fonction d'ajout d'une pizza avec nom/prix/description*/
   add() {
     if (this.addPizza['price'] == null) {
       this.pizza.price =+ 0;
@@ -45,6 +46,7 @@ export class AddPage {
     });
   }
 
+  /* Fonctionnalité pour téléphone portable, ajout d'une image pour la pizza*/
   addPicture() {
     this.camera.getPicture().then((imagedata) => {
       this.base64Image = imagedata;
